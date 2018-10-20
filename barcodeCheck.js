@@ -38,34 +38,6 @@ function sendEmail(email,name)
       });
 }
 
-
-
-function checkBarcode(barcode,passengerInfo)
-{
-    //array of dictionaries with rows as indexes column as key value as value
-    for(index = 0 ; index < dataFromCSV.length ; index++) {
-        var deliveredAttribute = dataFromCSV[index].deliveredAttribute
-        var textEmail = dataFromCSV[index].textEmail
-        if dataFromCSV[index].barcode == bagBarcode{
-            deliveredAttribute = "yes"
-        //find index which is the row position i dont know how to fake this at the moment
-            if textEmail ==="text"{
-
-            }
-                //message function with the phone number
-            else if textEmail === "email"{
-
-            }
-                //email function with email
-        else:
-            continue;
-        }
-            
-    }
-
-    
-}
-
 function parseCSV(fileName)
 {
     var dataString = fs.readFileSync(fileName, 'utf8');
@@ -76,6 +48,28 @@ function parseCSV(fileName)
     })
     return JSON.stringify(lines, null, 2);
 }
+
+function checkBarcode(barcode,info)
+{
+    for(index = 0; index < info.length; index++)
+    {
+        if(info[index][0] === barcode)
+        {
+            passenger = info[index];
+            passenger[6] = "yes";
+            if(passenger[5] === "email")
+            {
+                sendEmail(passenger[3],passenger[1]);
+            }
+            else if(passenger[5] === "text")
+            {
+                sendText(passenger[4],passenger[1]);
+            }
+        }
+                   
+    }
+}
+
 
 
 
