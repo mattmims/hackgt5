@@ -68,7 +68,27 @@ function checkBarcode(barcode,info)
         }
                    
     }
+    return info;
 }
+
+function update(data,fileName,barcode,passengerInfo)
+{
+    var oldData = parseCSV(fileName).join(", ");
+    var newData = checkBarcode(barcode,passengerInfo).join(", ");
+    if(newData !== oldData)
+    {
+        var result = data.replace(oldData,newData);
+        fs.writeFile(fileName, result, 'utf8', function (err) {
+        if (err) {
+            return console.log(err);
+        }
+    
+        console.log("file saved!");
+        });
+    }
+    
+}
+
 
 
 
