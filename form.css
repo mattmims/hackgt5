@@ -1,0 +1,25 @@
+h2, h5 {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    margin-left: 10%;
+}
+
+.col-form-label {
+    margin-top: 5px;
+}
+
+.form-check {
+    margin-left: 2%;
+    margin-right: 2%;
+}
