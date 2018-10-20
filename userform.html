@@ -1,27 +1,60 @@
 <html><head>
     <title>Register for automatic baggage claim notification!</title>
     <script type="text/javascript" src="script.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="form.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head><body>
-    <p>Register for automatic baggage claim notification!</p>
-    <div>
-        <label for="username">Username</label>
-        <input type="text" id="username">
-        <label for="password">Password</label>
-        <input type="text" id="password">
-        <p>What is your preferred method of contact?</p>
-        <label for="textradio">Text</label>
-        <input type="radio" name="contact" id="textradio" onclick="toggleText()">
-        <label for="emailradio">Email</label>
-        <input type="radio" name="contact" id="emailradio" onclick="toggleEmail()">
-        <div id="textcontainer" style="display: none;">
+    <div class="container">
+        <h2>Automatic Baggage Notification Registration Form</h2>
+        <h5> Please complete the following form to sign up for automatic baggage claim notifications! </h5>
+        <hr />
+        <form>
+            <div class="form-group row">
+                <label for="username" class="col-2 col-form-label">Username</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" placeholder="Enter a valid username" id="username-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-2 col-form-label">Password</label>
+                <div class="col-10">
+                    <input class="form-control" type="password" id="password-input">
+                </div>
+            </div>
+
             <br>
-            <label for="phonenumber">Enter your phone number</label>
-            <input type="text" id="phonenumber">
-        </div><div id="emailcontainer" style="display: none;">
+
+            <div class="form-group row">
+                <label for="email-or-phone" class="col-12 col-form-label">Preferred method of contact:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="text" onclick="toggleText()">
+                    <label for="textradio" class="form-check-label" for="inlineRadio1">Text</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="email" onclick="toggleEmail()">
+                    <label for="emailradio" class="form-check-label" for="inlineRadio2">Email</label>
+                </div>
+            </div>
+
+            <div id="textcontainer" style="display: none;">
+                <br>
+                <label for="phonenumber">Enter your phone number</label>
+                <input type="text" id="phonenumber">
+            </div>
+            <div id="emailcontainer" style="display: none;">
+                <br>
+                <label for="email">Enter your email</label>
+                <input type="text" id="email">
+            </div>
             <br>
-            <label for="email">Enter your email</label>
-            <input type="text" id="email">
-        </div><br>
-        <input type="submit" id="submitbutton" onclick="trySubmit()">
+            <input type="submit" id="submitbutton" onclick="trySubmit()">
+        </form>
     </div>
 </body></html>
