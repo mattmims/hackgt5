@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Baggage</title>
+    <script type="text/javascript" src="server.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <h2>Automatic Baggage Notification Registration Form</h2>
+    <h5> Please complete the following form to sign up for automatic baggage claim notifications! </h5>
+    <hr />
+    <div class="container">
+      <fieldset>
+        <form action="/" method="post">
+          <input name="username" type="text" class="ghost-input" placeholder="Enter Username" required>
+          <input name="password" type="text" class="ghost-input" placeholder="Enter Password" required>
+          <br>
+          <label for="email-or-phone">Enter info for method of contact:</label>
+          <br>
+          <input name="phone" type="text" class="ghost-input" placeholder="Enter Phone Number" required>
+          <input name="email" type="text" class="ghost-input" placeholder="Enter Email" required>
+          <br>
+          <input type="submit" class="ghost-button" value="Submit">
+        </form>
+      </fieldset>
+    </div>
+  </body>
+</html>
