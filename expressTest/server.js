@@ -27,7 +27,7 @@ app.post('/', function (req, res) {
     console.log(success);
     if(success);
     {
-        updateUserInfo(req.body.username,req.body.email,req.body.phone,data);
+        //updateUserInfo(req.body.username,req.body.email,req.body.phone,data);
     }
     console.log(req.body.username);
     console.log(req.body.password);
@@ -42,7 +42,9 @@ app.post('/', function (req, res) {
       .map(function(lineStr) {
           return lineStr.split(",");   // Convert each line to array (,)
       })
-      return JSON.stringify(lines, null, 2);
+      console.log(JSON.stringify(lines, null, 2));
+      var json = JSON.stringify(lines, null, 2);
+      return JSON.parse(json);
   }
 
   function signInSuccessful(username,password,data)
@@ -55,6 +57,8 @@ app.post('/', function (req, res) {
         }
                    
     }
+    console.log(data[0][0]);
+    return false;
   }
 
   function updateUserInfo(username,email,phone,data)
@@ -68,16 +72,16 @@ app.post('/', function (req, res) {
         }
                    
     }
-    update(parseCSV("data.csv"),data);
+    update(parseCSV("data.csv"),data,"data.csv");
 
   }
 
-function update(oldData,data)
+function update(oldData,data,fileName)
 {
-    //var oldData = parseCSV(fileName).join(", ");
-    oldData = Array.prototype.join.call(oldData, ", ");
-    //var newData = data.join(", ");
-    var newData = Array.prototype.join.call(data, ", ");
+    var oldData = parseCSV(fileName).join(", ");
+    //oldData = Array.prototype.join.call(oldData, ", ");
+    var newData = data.join(", ");
+    //var newData = Array.prototype.join.call(data, ", ");
 
     if(newData !== oldData)
     {
