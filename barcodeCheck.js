@@ -3,16 +3,15 @@ const nodemailer = require('nodemailer');
 const fs = require('fs')
 
 
-function sendText(number,name)
+function sendText(number,name, message)
 {
     var c = new TMClient('spoorthijakka', 'GUBw5yqH6CZvV0xfdyrkaMvavFomjV');
-    var message = `Hi ${name}! your bag is now on the baggage carousel`
-    c.Messages.send({text: 'hello materoom!!', phones:number}, function(err, res){
+    c.Messages.send({text: message, phones:number}, function(err, res){
     console.log('Messages.send()', err, res);
 });
 }
 
-function sendEmail(email,name)
+function sendEmail(email,name, message)
 {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -26,7 +25,7 @@ function sendEmail(email,name)
         from: 'noreplyscubed@gmail.com',
         to: email,
         subject: 'Sending Email using Node.js',
-        text: `Hi ${name}! Your bag is now on the baggage carousel`
+        text: message
       };
       
       transporter.sendMail(mailOptions, function(error, info){
@@ -59,10 +58,12 @@ function checkBarcode(barcode,info)
             passenger[6] = "yes";
             if(passenger[5] === "email")
             {
-                sendEmail(passenger[3],passenger[1]);
+                var message = `Hi ${name}! Your bag is now on the baggage carousel`
+                sendEmail(passenger[3],passenger[1], message);
             }
             else if(passenger[5] === "text")
             {
+                var message = `Hi ${passenger[1]}! your bag is now on the baggage carousel`;
                 sendText(passenger[4],passenger[1]);
             }
         }
@@ -87,6 +88,21 @@ function update(data,fileName,barcode,passengerInfo)
         });
     }
     
+}
+
+function sendLostMessage(dataFromCSV){
+    for (index = 0; index < dataFromCSV.length; i++){
+        if dataFromCSV[6] === "no"{
+            if dataFromCSV[5].textEmail === "text"{
+                var lostMessage = `Hello ${dataFromCSV[1]}$! Unfortunately, your bag may be lost. Please proceed to your airline+"'"+"s" nearest help desk to get more information.`;
+                sendText(dataFromCSV[4], dataFromCSV[1], lostMessage);
+            }
+            else if dataFromCSV[index].textEmail === "email"{
+                var lostMessage = `Hello ${dataFromCSV[1]}$! Unfortunately, your bag may be lost. Please proceed to your airline+"'"+"s" nearest help desk to get more information. `;
+                sendEmail(dataFromCSV[3], dataFromCSV[1], lostMessage);
+            }
+        }
+    }
 }
 
 
