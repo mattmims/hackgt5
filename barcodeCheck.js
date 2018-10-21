@@ -79,11 +79,11 @@ function update(data,fileName,barcode,passengerInfo)
     {
         var result = data.replace(oldData,newData);
         fs.writeFile(fileName, result, 'utf8', function (err) {
-        if (err) {
-            return console.log(err);
-        }
-    
-        console.log("file saved!");
+            if (err) {
+                return console.log(err);
+            }
+        
+            console.log("file saved!");
         });
     }
     

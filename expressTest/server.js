@@ -14,9 +14,10 @@ app.listen(3000, function () {
 })
 
 app.post('/', function (req, res) {
-    res.render('index');
-    console.log(req.body.text);
-    console.log(req.body.username);
+    res.render('confirmation');
+    res.render('confirmation', {user: req.body.username});
+    //console.log(req.body.phone);
+    //console.log(req.body.username);
   })
 
 function toggleText() {
